@@ -1,0 +1,33 @@
+.campaign-history {
+  max-width: 1000px;
+  margin: 2rem auto;
+  padding: 1rem;
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 0 12px rgba(0,0,0,0.1);
+}
+
+.campaign-history h2 {
+  text-align: center;
+  margin-bottom: 1rem;
+}
+
+.campaign-history table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.campaign-history th, .campaign-history td {
+  padding: 12px;
+  border-bottom: 1px solid #ccc;
+  text-align: left;
+}
+
+.campaign-history th {
+  background-color: #f7f7f7;
+}
+
+.error {
+  color: red;
+  text-align: center;
+}
