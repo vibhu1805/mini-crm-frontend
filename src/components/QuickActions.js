@@ -10,9 +10,6 @@ const QuickActions = () => {
         <Link to="/campaigns/new" className="action-button">
           Create New Campaign
         </Link>
-        <Link to="/segments/new" className="action-button">
-          Create New Segment
-        </Link>
         <Link to="/customer/new" className="action-button">
           Add New Customer
         </Link>
