@@ -23,7 +23,7 @@ function Signup() {
     setError('');
     
     try {
-      const res = await axios.post('http://localhost:5000/auth/register', { email, password });
+      const res = await axios.post('https://mini-crm-backend-84ex.onrender.com/auth/register', { email, password });
       localStorage.setItem('token', res.data.token);
       navigate('/dashboard');
     } catch (err) {
