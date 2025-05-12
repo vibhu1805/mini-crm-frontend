@@ -9,13 +9,28 @@
 }
 .google-button {
   margin-top: 1rem;
+  margin-bottom: 1rem;
   background-color: white;
   color: #444;
   border: 1px solid #ccc;
   display: flex;
   align-items: center;
   justify-content: center;
+  font-weight: 500;
 }
+
+.google-button:hover {
+  background-color: #f7f7f7;
+  cursor: pointer;
+}
+
+.divider {
+  text-align: center;
+  margin: 1rem 0;
+  color: #aaa;
+  font-size: 14px;
+}
+
 
 .google-button:hover {
   background-color: #f7f7f7;
