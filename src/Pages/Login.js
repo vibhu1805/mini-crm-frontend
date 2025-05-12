@@ -26,6 +26,10 @@ function Login() {
     }
   };
 
+  const handleGoogleLogin = () => {
+    window.location.href = 'https://mini-crm-backend-84ex.onrender.com/auth/google';
+  };
+
   return (
     <div className="auth-container">
       <div className="auth-card">
@@ -69,7 +73,12 @@ function Login() {
             )}
           </button>
         </form>
-        
+
+        <button className="auth-button google-button" onClick={handleGoogleLogin}>
+          <img src="https://developers.google.com/identity/images/g-logo.png" alt="Google" style={{ width: 20, marginRight: 10 }} />
+          Continue with Google
+        </button>
+
         <div className="auth-footer">
           <p>Don't have an account? <Link to="/signup">Sign up</Link></p>
           <Link to="/forgot-password" className="text-link">Forgot password?</Link>
