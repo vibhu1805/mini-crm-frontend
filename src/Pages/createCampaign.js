@@ -42,7 +42,7 @@ const CreateCampaign = () => {
     const token = localStorage.getItem('token');
 
     try {
-      await axios.post('http://localhost:5000/api/campaigns', form, {
+      await axios.post('https://mini-crm-backend-84ex.onrender.com/api/campaigns', form, {
         headers: { Authorization: `Bearer ${token}` },
       });
 
