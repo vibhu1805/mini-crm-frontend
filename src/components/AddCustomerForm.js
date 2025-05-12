@@ -32,7 +32,7 @@ const AddCustomerForm = () => {
   const customerData = { name, email, phone };
 
   try {
-    const response = await axios.post('http://localhost:5000/api/customers', customerData, {
+    const response = await axios.post('https://mini-crm-backend-84ex.onrender.com/api/customers', customerData, {
       headers: {
         Authorization: `Bearer ${token}`,
         'Content-Type': 'application/json',
