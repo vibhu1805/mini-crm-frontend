@@ -7,6 +7,19 @@
   background: #f8fafc;
   padding: 1rem;
 }
+.google-button {
+  margin-top: 1rem;
+  background-color: white;
+  color: #444;
+  border: 1px solid #ccc;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.google-button:hover {
+  background-color: #f7f7f7;
+}
 
 .auth-card {
   background: white;
