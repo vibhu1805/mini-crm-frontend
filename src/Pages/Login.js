@@ -37,7 +37,19 @@ function Login() {
           <h2>Welcome Back</h2>
           <p>Sign in to your Mini CRM account</p>
         </div>
-        
+
+        {/* Google Login Button */}
+        <button className="auth-button google-button" onClick={handleGoogleLogin}>
+          <img
+            src="https://developers.google.com/identity/images/g-logo.png"
+            alt="Google"
+            style={{ width: 20, marginRight: 10 }}
+          />
+          Continue with Google
+        </button>
+
+        <div className="divider">or</div>
+
         {error && <div className="auth-error">{error}</div>}
         
         <form onSubmit={handleLogin} className="auth-form">
@@ -73,12 +85,7 @@ function Login() {
             )}
           </button>
         </form>
-
-        <button className="auth-button google-button" onClick={handleGoogleLogin}>
-          <img src="https://developers.google.com/identity/images/g-logo.png" alt="Google" style={{ width: 20, marginRight: 10 }} />
-          Continue with Google
-        </button>
-
+        
         <div className="auth-footer">
           <p>Don't have an account? <Link to="/signup">Sign up</Link></p>
           <Link to="/forgot-password" className="text-link">Forgot password?</Link>
