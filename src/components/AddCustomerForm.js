@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import '../styles/AddCustomerForm.css';
-
 const AddCustomerForm = () => {
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
@@ -10,61 +9,63 @@ const AddCustomerForm = () => {
   const [successMessage, setSuccessMessage] = useState('');
   const [loading, setLoading] = useState(false);
 
+  // Handle form submission
   const handleSubmit = async (e) => {
-    e.preventDefault();
-    setError('');
-    setSuccessMessage('');
-    setLoading(true);
+  e.preventDefault();
+  setError('');
+  setSuccessMessage('');
+  setLoading(true);
 
-    if (!name || !email || !phone) {
-      setError('All fields are required.');
-      setLoading(false);
-      return;
+  if (!name || !email || !phone) {
+    setError('All fields are required.');
+    setLoading(false);
+    return;
+  }
+
+  const token = localStorage.getItem('token');
+  if (!token) {
+    setError('You must be logged in to add a customer.');
+    setLoading(false);
+    return;
+  }
+
+  const customerData = { name, email, phone };
+
+  try {
+    const response = await axios.post('http://localhost:5000/api/customers', customerData, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+        'Content-Type': 'application/json',
+      },
+    });
+
+    if (response.status === 200) {
+      setSuccessMessage('Customer added successfully!');
+      setName('');
+      setEmail('');
+      setPhone('');
     }
-
-    const token = localStorage.getItem('token');
-    if (!token) {
-      setError('You must be logged in to add a customer.');
-      setLoading(false);
-      return;
+  } catch (err) {
+    console.error('Error response:', err.response);
+    if (err.response) {
+      setError(err.response.data.error || 'Failed to save customer');
+    } else {
+      setError('Error communicating with the server');
     }
+  } finally {
+    setLoading(false);
+  }
+};
 
-    const customerData = { name, email, phone };
-
-    try {
-      const response = await axios.post('https://mini-crm-backend-84ex.onrender.com/api/customers', customerData, {
-        headers: {
-          Authorization: `Bearer ${token}`,
-          'Content-Type': 'application/json',
-        },
-      });
-
-      if (response.status === 200) {
-        setSuccessMessage('Customer added successfully!');
-        setName('');
-        setEmail('');
-        setPhone('');
-      }
-    } catch (err) {
-      console.error('Error response:', err.response);
-      if (err.response) {
-        setError(err.response.data.error || 'Failed to save customer');
-      } else {
-        setError('Error communicating with the server');
-      }
-    } finally {
-      setLoading(false);
-    }
-  };
 
   return (
-    <div className="add-customer-form">
+    <div>
       <h2>Add Customer</h2>
-      {error && <p className="error-message">{error}</p>}
-      {successMessage && <p className="success-message">{successMessage}</p>}
+      {error && <p style={{ color: 'red' }}>{error}</p>}
+      {successMessage && <p style={{ color: 'green' }}>{successMessage}</p>}
 
       <form onSubmit={handleSubmit}>
-        <div className="form-group">
+        <div>
           <label>Name:</label>
           <input
             type="text"
@@ -73,7 +74,7 @@ const AddCustomerForm = () => {
             required
           />
         </div>
-        <div className="form-group">
+        <div>
           <label>Email:</label>
           <input
             type="email"
@@ -82,7 +83,7 @@ const AddCustomerForm = () => {
             required
           />
         </div>
-        <div className="form-group">
+        <div>
           <label>Phone:</label>
           <input
             type="text"
@@ -91,7 +92,7 @@ const AddCustomerForm = () => {
             required
           />
         </div>
-        <button type="submit" className="submit-button" disabled={loading}>
+        <button type="submit" disabled={loading}>
           {loading ? 'Adding...' : 'Add Customer'}
         </button>
       </form>
