@@ -20,6 +20,14 @@ const CreateCampaign = () => {
     setError('');
     setCreated(false);
   };
+  const previewAudience = async () => {
+    try {
+      const res = await axios.post("http://localhost:5000/api/audience/preview", { rules });
+      setAudienceSize(res.data.audienceSize);
+    } catch (err) {
+      alert("Error fetching audience size");
+    }
+  };
 
   const updateSegmentRule = (index, key, value) => {
     const updated = [...form.segment];
@@ -120,7 +128,7 @@ const CreateCampaign = () => {
         <button type="submit" disabled={loading}>
           {loading ? 'Creating...' : 'Create Campaign'}
         </button>
-
+    <button onClick={previewAudience} className="bg-blue-500 text-white px-3 py-1 rounded mr-2">Preview Audience</button>
         {created && <p className="success">✅ Campaign created!</p>}
         {error && <p className="error">❌ {error}</p>}
       </form>
